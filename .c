@@ -109,6 +109,7 @@ enum Statetype stateInComment(int x)
         state = POSSIBLE_END_COMMENT; 
     }
     else if (x == '\n') {
+        line_num++;
         putchar(x); /*new line*/
         state = IN_COMMENT; 
     }
@@ -184,8 +185,10 @@ int main(void) {
     /* read until EOF */
     while ((x = getchar()) != EOF) { 
         if (x == '\n') {
-            line_num = line_num + 1; 
+            line_num++; 
         } 
+        if (state!=IN_COMMENT)
+            error_num=line_num
         switch (state) {
             case NORMAL: 
                 state = stateNormal(x, &line_num);
