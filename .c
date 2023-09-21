@@ -25,9 +25,9 @@ enum Statetype stateNormal(int x, int *line_num)
         state = POSSIBLE_COMMENT_START;
     }
     else  {
-        if (x == '\n') {
+        /* if (x == '\n') {
             (*line_num)++;
-        } 
+        } */
         putchar(x);
         state = NORMAL;     
 }

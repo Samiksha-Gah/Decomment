@@ -1,0 +1,37 @@
+NORMAL (accept) <- start state
+    ': IN_CHAR_LITERAL
+    ": IN_STRING
+    /: POSSIBLE_COMMENT_START
+    other: NORMAL
+
+IN_STRING (accept)
+    ": NORMAL
+    \: STRING_IGNORED_CHAR
+    other: IN_STRING
+
+STRING_IGNORED_CHAR (accept)
+    other: IN_STRING
+
+IN_CHAR_LITERAL (accept)
+    ': NORMAL
+    \: CHAR_LITERAL_IGNORED_CHAR
+    other: IN_CHAR_LITERAL
+
+CHAR_LITERAL_IGNORED_CHAR (accept)
+    other: IN_CHAR_LITERAL
+
+POSSIBLE_COMMENT_START (accept)
+    /: POSSIBLE_COMMENT_START
+    ": IN_STRING
+    ': IN_CHAR_LITERAL
+    *: IN_COMMENT
+    other: NORMAL
+
+IN_COMMENT (reject)
+    *: POSSIBLY_LEAVE_COMMENT
+    other: IN_COMMENT
+
+MAYBE_LEAVING_COMMENT (reject)
+    /: NORMAL
+    *: POSSIBLY_LEAVE_COMMENT
+    other: IN_COMMENT
