@@ -109,7 +109,6 @@ enum Statetype stateInComment(int x)
         state = POSSIBLE_END_COMMENT; 
     }
     else if (x == '\n') {
-        line_num++;
         putchar(x); /*new line*/
         state = IN_COMMENT; 
     }
