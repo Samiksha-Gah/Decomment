@@ -118,10 +118,11 @@ enum Statetype stateInComment(int x)
     return state;
 }
 
-/* Possible Comment Start Function - prints the char and the slash if
-its not in the comment. It returns the new state */
+/* Possible Comment Start Function - prints the char and the 
+slash if its not in the comment. It returns the new state */
 
- enum Statetype statePossibleCommentStart(int x, int *line_num, int *error_num)
+ enum Statetype statePossibleCommentStart(int x, int *line_num, 
+                                            int *error_num)
 {
     enum Statetype state;
     if (x == '/') {
@@ -202,14 +203,16 @@ int main(void) {
                 state = stateInComment(x);
                 break;
             case POSSIBLE_COMMENT_START: 
-                state = statePossibleCommentStart(x, &line_num, &error_num); 
+                state = statePossibleCommentStart(x, &line_num, 
+                                                    &error_num); 
                 break;
             case POSSIBLE_END_COMMENT: 
                 state = statePossibleEndComment(x);
                 break;
         }
 
-        if (x == '\n' && state != POSSIBLE_COMMENT_START && state != IN_COMMENT) {
+        if (x == '\n' && state != POSSIBLE_COMMENT_START 
+                                    && state != IN_COMMENT) {
             error_num = line_num;
         }
         
@@ -217,14 +220,16 @@ int main(void) {
             line_num = line_num + 1; 
         } 
     }
-    /* If possibly at the end of a comment or in a comment, it is unterminated
-    and causes an EXIT_FAILURE */
+    /* If possibly at the end of a comment or in a comment, 
+    it is unterminated and causes an EXIT_FAILURE */
     if (state == POSSIBLE_END_COMMENT || state == IN_COMMENT) {
-        fprintf(stderr, "Error: line %d: unterminated comment\n", error_num);
+        fprintf(stderr, "Error: line %d: unterminated comment\n", 
+                                                error_num);
         return EXIT_FAILURE;
     }
      else {
-        /* if ended in maybe comment, the last slash wasn't printed, so adding that */ 
+        /* if ended in maybe comment, the last slash 
+        wasn't printed, so adding that */ 
         if (state == POSSIBLE_COMMENT_START) {
         printf("/");
         }
