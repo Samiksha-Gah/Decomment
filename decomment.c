@@ -50,8 +50,8 @@ enum Statetype stateInString(int x)
         state = NORMAL;
     } 
     else {
-         putchar(x);
-         state = IN_STRING;
+        putchar(x);
+        state = IN_STRING;
 }
 return state;
 }
@@ -118,8 +118,8 @@ enum Statetype stateInComment(int x)
     return state;
 }
 
-/* Possible Comment Start Function - prints the char and the 
-slash if its not in the comment. It returns the new state */
+/* Possible Comment Start Function - prints the char and the slash if
+its not in the comment. It returns the new state */
 
  enum Statetype statePossibleCommentStart(int x, int *line_num, 
                                             int *error_num)
