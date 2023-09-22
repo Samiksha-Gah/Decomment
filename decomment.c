@@ -213,7 +213,7 @@ int main(void) {
             error_num = line_num;
         }
         
-        if (x == '\n') {
+        if (x == '\n' && state != NORMAL) {
             line_num = line_num + 1; 
         } 
     }
