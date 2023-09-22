@@ -182,13 +182,13 @@ int main(void) {
     int x;
     /* read until EOF */
     while ((x = getchar()) != EOF) { 
-        if (x == '\n') {
-            line_num = line_num + 1; 
-        } 
-
         if (x == '\n' && state != POSSIBLE_COMMENT_START && state != IN_COMMENT) {
             error_num = line_num;
         }
+        
+        if (x == '\n') {
+            line_num = line_num + 1; 
+        } 
 
         switch (state) {
             case NORMAL: 
