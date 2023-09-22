@@ -186,7 +186,7 @@ int main(void) {
             line_num = line_num + 1; 
         } 
 
-        if (x == '\n' && state == POSSIBLE_COMMENT_START) {
+        if (x == '\n' && state != POSSIBLE_COMMENT_START) {
             error_num = line_num;
         }
 
