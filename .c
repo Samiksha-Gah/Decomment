@@ -124,7 +124,6 @@ its not in the comment. It returns the new state */
  enum Statetype statePossibleCommentStart(int x, int *line_num, int *error_num)
 {
     enum Statetype state;
-    *error_num = *line_num;
     if (x == '/') {
         printf("/"); /*prints the second slash */
         state = POSSIBLE_COMMENT_START;
