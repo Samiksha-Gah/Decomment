@@ -182,14 +182,6 @@ int main(void) {
     int x;
     /* read until EOF */
     while ((x = getchar()) != EOF) { 
-        if (x == '\n' && state != POSSIBLE_COMMENT_START && state != IN_COMMENT) {
-            error_num = line_num;
-        }
-        
-        if (x == '\n') {
-            line_num = line_num + 1; 
-        } 
-
         switch (state) {
             case NORMAL: 
                 state = stateNormal(x, &line_num);
@@ -216,6 +208,14 @@ int main(void) {
                 state = statePossibleEndComment(x);
                 break;
         }
+
+        if (x == '\n' && state != POSSIBLE_COMMENT_START && state != IN_COMMENT) {
+            error_num = line_num;
+        }
+        
+        if (x == '\n') {
+            line_num = line_num + 1; 
+        } 
     }
     /* If possibly at the end of a comment or in a comment, it is unterminated
     and causes an EXIT_FAILURE */
